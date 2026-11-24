@@ -172,3 +172,110 @@ footer{background:#0a2a31;color:#9db8bc;padding:32px 0 100px;font-size:14px;text
 @media(max-width:700px){section{padding:64px 0}.wrap{padding:0 18px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 .doc{max-width:780px;padding:56px 24px 80px}.doc h1{font-size:clamp(26px,4.4vw,40px);margin-bottom:22px}.doc h2{font-size:20px;margin:30px 0 8px;max-width:none;text-align:left}.doc p,.doc li{color:#3b4a4c}.doc a{color:var(--amber-d)}
+
+/* ===================== Доработки: мобильная версия, меню, SEO-блок ===================== */
+img{height:auto}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
+.skip{position:absolute;left:-9999px;top:8px;z-index:100;background:#fff;color:#000;padding:10px 16px;border-radius:8px;font-weight:700}
+.skip:focus{left:8px}
+section h2{max-width:28ch}
+.m-only{display:none}
+.burger{display:none;flex:none;width:44px;height:44px;border:0;background:transparent;border-radius:10px;cursor:pointer;padding:0;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--hdr-fg)}
+.burger span{display:block;width:22px;height:2.5px;background:currentColor;border-radius:2px;transition:transform .2s,opacity .2s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+@media(max-width:1000px){
+ nav{display:none}
+ .burger{display:flex}
+ .hd-r{gap:8px}
+ nav.open{display:flex;flex-direction:column;gap:0;position:fixed;left:0;right:0;top:var(--hd-h);max-height:calc(100vh - var(--hd-h));max-height:calc(100dvh - var(--hd-h));overflow-y:auto;background:var(--hdr-bg);padding:6px 18px calc(20px + env(safe-area-inset-bottom));box-shadow:0 24px 40px rgba(0,0,0,.28);border-top:1px solid rgba(127,127,127,.25);z-index:60}
+ nav.open a{display:block;padding:16px 4px;font-size:18px;font-weight:600;border-radius:0;border-bottom:1px solid rgba(127,127,127,.22);color:var(--hdr-fg);background:none}
+ nav.open .m-only{display:block;border-bottom:0;margin-top:10px;text-align:center;border-radius:12px;padding:15px 12px}
+ nav.open .m-only.call{background:var(--accent);color:var(--on-accent)}
+ nav.open .m-only.tgl{border:1.5px solid rgba(127,127,127,.5)}
+ body.menu-open{overflow:hidden}
+}
+@media(max-width:480px){.hd-r .tel{display:none}}
+
+/* нижняя панель на телефоне */
+.mbar{display:none}
+@media(max-width:700px){
+ .mbar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:var(--hdr-bg);border-top:1px solid rgba(127,127,127,.3);transition:transform .3s var(--ease)}
+ .mbar a{min-height:46px;display:flex;align-items:center;justify-content:center;border-radius:10px;font:700 14px var(--body);text-decoration:none;color:var(--hdr-fg);border:1.5px solid rgba(127,127,127,.5);text-align:center}
+ .mbar .mb-calc{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+ .mbar.hide{transform:translateY(110%)}
+ .float{display:none}
+ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+ footer{padding-bottom:30px}
+}
+
+/* таблица цен */
+th{padding:12px 18px;text-align:left;font:700 12.5px var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:rgba(127,127,127,.08);border-bottom:1px solid var(--line)}
+th:last-child{text-align:right}
+@media(max-width:560px){td,th{padding:12px 14px}td:last-child{font-size:14px}}
+@media(max-width:400px){td,th{padding:11px 10px}td:last-child{font-size:13.5px}}
+@media(max-width:350px){td:last-child{white-space:normal;width:34%}}
+
+/* SEO-текст */
+.seo-text .txt{max-width:820px;margin:28px auto 0;text-align:left}
+.seo-text h3{margin:28px 0 8px;font-size:19px}
+.seo-text p{margin:0 0 8px;color:var(--muted)}
+.seo-text a{color:var(--accent-d)}
+
+/* квиз и формы */
+.fld select{font:400 16px var(--body);padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);width:100%}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.qt:focus{outline:none}
+.opt{min-height:52px}
+.qnav .btn{min-height:48px}.back{min-height:44px;padding:8px 10px}
+.err{font-weight:600}
+.res .cta-row .btn{min-height:48px}
+@media(max-width:480px){
+ .qnav .btn{flex:1}
+ .res .cta-row{flex-direction:column;align-items:stretch}
+}
+details summary{min-height:48px}
+address{font-style:normal}
+.ft-contacts{margin-bottom:10px}
+
+/* услуги: 3 карточки в первом ряду, остальные по центру */
+.srv{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+.srv>.card{flex:0 0 calc((100% - 40px) / 3);min-width:0}
+@media(max-width:960px){.srv>.card{flex-basis:calc((100% - 20px) / 2)}}
+@media(max-width:600px){.srv>.card{flex-basis:100%}}
+/* вопросы по центру */
+#faq h2{margin-left:auto;margin-right:auto;text-align:center;max-width:none}
+.faq{margin-left:auto;margin-right:auto}
+
+/* ===================== Плавность анимаций ===================== */
+:root{--ease:cubic-bezier(.22,.61,.36,1)}
+a,button,summary,label{-webkit-tap-highlight-color:transparent}
+a,button,summary,.opt{touch-action:manipulation}
+/* размытие под шапкой пересчитывается на каждом кадре скролла и «подлагивает» на телефонах */
+header{backdrop-filter:none;-webkit-backdrop-filter:none}
+.btn{transition:background-color .2s var(--ease),border-color .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease)}
+.opt{transition:border-color .2s var(--ease),background-color .2s var(--ease),transform .15s var(--ease)}
+.back,nav a,.mbar a,.float{transition:background-color .2s var(--ease),color .2s var(--ease),transform .2s var(--ease)}
+.opt:active{transform:scale(.985)}
+.btn:active:not([disabled]){transform:scale(.98)}
+.bar i{transition:width .45s var(--ease)}
+details summary::after{transition:transform .3s var(--ease)}
+@keyframes navIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+@keyframes navOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-10px)}}
+@media(max-width:1000px){
+ nav.open{animation:navIn .26s var(--ease) both}
+ nav.open.closing{animation:navOut .2s var(--ease) both}
+}
+@keyframes qzIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.qz-anim>*:not(.bar){animation:qzIn .36s var(--ease) both}
+.qz-anim>.qt{animation-delay:.04s}
+.qz-anim>.opts,.qz-anim>form,.qz-anim>.res{animation-delay:.08s}
+.qz-anim>.qnav{animation-delay:.12s}
+/* на сенсорных экранах hover «залипает» после касания: отключаем подъём */
+@media(hover:none){.card:hover,.btn:hover,.float:hover{transform:none}.card:hover img{transform:none}}
+@media(prefers-reduced-motion:reduce){nav.open,nav.open.closing,.qz-anim>*{animation:none!important}}
+:root{--accent:var(--amber);--accent-d:var(--amber-d);--on-accent:#1d1208;--hdr-bg:#0f3a42;--hdr-fg:#fff;--hd-h:72px}
+th{background:var(--bone);color:var(--spruce)}
+.seo-text{background:var(--bg)}
+details[data-closing] summary::after{transform:rotate(45deg) translateY(-3px)}

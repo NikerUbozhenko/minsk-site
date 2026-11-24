@@ -1,0 +1,10 @@
+README.txt
+SEO.md
+.env*
+api/*.php
+api/.htaccess
+.htaccess
+server.js
+start.bat
+check-telegram.mjs
+check-telegram.bat

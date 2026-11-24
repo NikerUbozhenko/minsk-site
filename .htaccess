@@ -1,0 +1,35 @@
+# Apache (обычный хостинг). На Vercel этот файл не используется.
+Options -Indexes
+DirectoryIndex index.html
+
+# /api/send -> PHP-обработчик
+RewriteEngine On
+RewriteRule ^api/send/?$ api/send.php [L]
+
+# скрываем служебные файлы и папку .git
+RedirectMatch 404 /\.git
+<FilesMatch "^(package\.json|vercel\.json|set-domain\.mjs|server\.js|start\.bat|check-telegram\.(mjs|bat)|README\.txt|SEO\.md|\.gitignore|\.vercelignore)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType text/css "access plus 1 day"
+  ExpiresByType application/javascript "access plus 1 day"
+</IfModule>
+
+# После подключения SSL-сертификата можно включить принудительный HTTPS (уберите # в трёх строках):
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
